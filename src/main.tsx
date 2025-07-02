@@ -8,12 +8,14 @@ import {
 import router from './routes/index.ts';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
+import { Toaster } from 'sonner';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
+      <Toaster />
       <RouterProvider router={router} >
-
+  
       </RouterProvider>
     </Provider>
   </StrictMode>,

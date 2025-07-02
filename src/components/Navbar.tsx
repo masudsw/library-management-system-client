@@ -19,6 +19,13 @@ const Navbar = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <Link to="/addbook">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <button className="border-t-neutral-950"><span className="text-white bg-amber-900">Add new Book</span></button>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <Link to="/borrow">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Borrow
