@@ -1,9 +1,12 @@
-import { Button } from "@/components/ui/button"
+import { Outlet } from "react-router"
+import Navbar from "./components/Navbar"
+
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
+    <div className="mx-5 my-7">
+      <Navbar/>
+       <Outlet/>
     </div>
   )
 }
