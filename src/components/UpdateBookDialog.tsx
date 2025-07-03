@@ -25,7 +25,7 @@ export function UpdateBookDialog({ book }: BookProp) {
   const [updateBook] = useUpdateBookMutation();
 
   async function onSubmit(values: z.infer<typeof bookFormSchema>) {
-
+    values.copies==0? values.available=false:values.available=true
     try {
       const result = await updateBook(
         {
@@ -103,7 +103,7 @@ export function UpdateBookDialog({ book }: BookProp) {
                     <FormControl>
                       <Input
                         type="number"
-                        min="1"
+                        min="0"
                         {...field}
                         onChange={(e) => field.onChange(parseInt(e.target.value))}
                       />

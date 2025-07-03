@@ -2,6 +2,7 @@ import { useGetAllBooksQuery } from '@/services/books';
 import type { IBook } from '@/types';
 import { DeleteAlert } from '@/components/DeleteAlert';
 import { UpdateBookDialog } from '@/components/UpdateBookDialog';
+import { BookCheck, BookMarked, BookOpenCheck, BookUp } from 'lucide-react';
 
 export default function Books() {
     const { data: response, error, isLoading } = useGetAllBooksQuery('default');
@@ -90,6 +91,7 @@ export default function Books() {
                                         <Trash2 className="h-5 w-5" />
                                     </button> */}
                                     <DeleteAlert id={book._id}/>
+                                    <BookOpenCheck/>
                                 </div>
                             </td>
                         </tr>
