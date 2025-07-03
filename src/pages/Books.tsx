@@ -1,10 +1,12 @@
 import { useGetAllBooksQuery } from '@/services/books';
 import { Pencil, Trash2 } from 'lucide-react';
 import type { IBook } from '@/types';
+import { DeleteAlert } from '@/components/DeleteAlert';
 
 export default function Books() {
     const { data: response, error, isLoading } = useGetAllBooksQuery('default');
     const books = response?.data || [];
+    
     if (isLoading) {
         return <div className="p-4 text-center">Loading books...</div>;
     }
@@ -83,9 +85,10 @@ export default function Books() {
                                     <button className="text-indigo-600 hover:text-indigo-900">
                                         <Pencil className="h-5 w-5" />
                                     </button>
-                                    <button className="text-red-600 hover:text-red-900">
+                                    {/* <button className="text-red-600 hover:text-red-900">
                                         <Trash2 className="h-5 w-5" />
-                                    </button>
+                                    </button> */}
+                                    <DeleteAlert id={book._id}/>
                                 </div>
                             </td>
                         </tr>
