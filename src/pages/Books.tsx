@@ -1,7 +1,7 @@
 import { useGetAllBooksQuery } from '@/services/books';
-import { Pencil, Trash2 } from 'lucide-react';
 import type { IBook } from '@/types';
 import { DeleteAlert } from '@/components/DeleteAlert';
+import { UpdateBookDialog } from '@/components/UpdateBookDialog';
 
 export default function Books() {
     const { data: response, error, isLoading } = useGetAllBooksQuery('default');
@@ -82,8 +82,9 @@ export default function Books() {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div className="flex space-x-2">
-                                    <button className="text-indigo-600 hover:text-indigo-900">
-                                        <Pencil className="h-5 w-5" />
+                                    <button  className="text-indigo-600 hover:text-indigo-900">
+                                        {/* <Pencil  className="h-5 w-5" /> */}
+                                        <UpdateBookDialog book={book}/>
                                     </button>
                                     {/* <button className="text-red-600 hover:text-red-900">
                                         <Trash2 className="h-5 w-5" />

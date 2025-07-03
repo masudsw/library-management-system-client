@@ -46,7 +46,7 @@ const bookFormSchema = z.object({
 });
 
 export function BookForm() {
-const navigate=useNavigate();
+    const navigate = useNavigate();
     // 2. Initialize form
     const form = useForm<z.infer<typeof bookFormSchema>>({
         resolver: zodResolver(bookFormSchema),
@@ -59,26 +59,23 @@ const navigate=useNavigate();
             description: "",
         },
     });
-   
-const [addBook, { isLoading }] = useAddBookMutation();
+
+    const [addBook, { isLoading }] = useAddBookMutation();
     // 3. Submit handler
     async function onSubmit(values: z.infer<typeof bookFormSchema>) {
-  const result = await addBook(values).unwrap();
-  console.log(result.success);
-  if (result.success===false) {
-     toast.error(result.message);
-    
-  } else {
-    toast.success("Book added!");
-    form.reset();
-    navigate("/");
-  }
-}
-    
+        const result = await addBook(values).unwrap();
+        console.log(result.success);
+        if (result.success === false) {
+            toast.error(result.message);
+
+        } else {
+            toast.success("Book added!");
+            form.reset();
+            navigate("/");
+        }
+    }
 
 
-
-    // Add your submission logic here (API call, etc.)
 
 
     return (
@@ -197,7 +194,7 @@ const [addBook, { isLoading }] = useAddBookMutation();
                 />
 
 
-                <Button type="submit" disabled={isLoading}>{isLoading?"adding...":"Add Book"}</Button>
+                <Button type="submit" disabled={isLoading}>{isLoading ? "adding..." : "Add Book"}</Button>
             </form>
         </Form>
     );
