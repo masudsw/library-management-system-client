@@ -62,13 +62,13 @@ export function BorrowBook({ book }: BookProp) {
                 quantity: data.quantity,
                 dueDate: data.dueDate
             }).unwrap();
-            console.log("result in try---",result.data.message);
+           
 
 
              toast.success(result.message || "Book borrowed successfully!");
             setOpen(false);
             form.reset();
-        } catch (error) {
+        } catch (error:any) {
             const errorMessage = result?.data?.message 
                        || error?.message 
                        || "Failed to borrow book";

@@ -2,7 +2,6 @@ import { useGetAllBooksQuery } from '@/services/books';
 import type { IBook } from '@/types';
 import { DeleteAlert } from '@/components/DeleteAlert';
 import { UpdateBookDialog } from '@/components/UpdateBookDialog';
-import { BookOpenCheck, } from 'lucide-react';
 import { BorrowBook } from '@/components/BorrowBook';
 
 export default function Books() {
@@ -56,7 +55,7 @@ export default function Books() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                     {books.map((book: IBook) => (
-                        <tr key={book.id} className="hover:bg-gray-50">
+                        <tr key={book._id} className="hover:bg-gray-50">
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm font-medium text-gray-900">{book.title}</div>
                             </td>
