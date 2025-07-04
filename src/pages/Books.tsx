@@ -2,12 +2,13 @@ import { useGetAllBooksQuery } from '@/services/books';
 import type { IBook } from '@/types';
 import { DeleteAlert } from '@/components/DeleteAlert';
 import { UpdateBookDialog } from '@/components/UpdateBookDialog';
-import { BookCheck, BookMarked, BookOpenCheck, BookUp } from 'lucide-react';
+import { BookOpenCheck, } from 'lucide-react';
+import { BorrowBook } from '@/components/BorrowBook';
 
 export default function Books() {
     const { data: response, error, isLoading } = useGetAllBooksQuery('default');
     const books = response?.data || [];
-    
+
     if (isLoading) {
         return <div className="p-4 text-center">Loading books...</div>;
     }
@@ -74,24 +75,21 @@ export default function Books() {
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <span
                                     className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${book.available
-                                            ? 'bg-green-100 text-green-800'
-                                            : 'bg-red-100 text-red-800'
+                                        ? 'bg-green-100 text-green-800'
+                                        : 'bg-red-100 text-red-800'
                                         }`}
                                 >
                                     {book.available ? 'Available' : 'Unavailable'}
                                 </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <div className="flex space-x-2">
-                                    <button  className="text-indigo-600 hover:text-indigo-900">
-                                        {/* <Pencil  className="h-5 w-5" /> */}
-                                        <UpdateBookDialog book={book}/>
-                                    </button>
-                                    {/* <button className="text-red-600 hover:text-red-900">
-                                        <Trash2 className="h-5 w-5" />
+                                <div className="flex space-x-2 items-center">
+                                    <UpdateBookDialog book={book} />
+                                    <DeleteAlert id={book._id} />
+                                    <BorrowBook book={book}/>
+                                    {/* <button className="text-indigo-600 hover:text-indigo-900">
+                                        
                                     </button> */}
-                                    <DeleteAlert id={book._id}/>
-                                    <BookOpenCheck/>
                                 </div>
                             </td>
                         </tr>

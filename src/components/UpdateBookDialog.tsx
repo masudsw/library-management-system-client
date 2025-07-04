@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 
 import { useBookForm } from "./useBookForm";
-import type { bookFormSchema } from "@/schema/shema";
+import { bookFormSchema, type BookFormValues } from "@/schema/shema";
 import type { z } from "zod";
 import { toast } from "sonner";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
@@ -19,32 +19,47 @@ interface BookProp {
   book: IBook
 }
 
+
+
 export function UpdateBookDialog({ book }: BookProp) {
-  const [open,setOpen]=useState(false)
+  const [open, setOpen] = useState(false)
   const form = useBookForm(book); // Pre-fill with existing book data
   const [updateBook] = useUpdateBookMutation();
 
   async function onSubmit(values: z.infer<typeof bookFormSchema>) {
-    values.copies==0? values.available=false:values.available=true
-    try {
-      const result = await updateBook(
-        {
-          id: book._id,
-          updatedBookInfo: values
-        }).unwrap();
-      console.log(result)
-      toast.success("Book updated!");
-    } catch (error) {
-      toast.error("Failed to update book");
+    values.available = values.copies === 0 ? false : true;
+
+    if (!book._id) {
+      toast.error("Book ID is missing.");
+      return;
     }
-    setOpen(false)
+      try {
+    const result = await updateBook({
+      id: book._id,
+      updatedBookInfo: values,
+    }).unwrap();
+
+   
+    toast.success("Book updated!");
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to update book");
   }
+
+  setOpen(false);
+}
+  
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
 
       <DialogTrigger asChild>
-        <Button variant="outline"><Pencil /></Button>
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+        >
+          <Pencil className="h-4 w-4" />
+        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
         <Form {...form}>

@@ -13,7 +13,7 @@ export const bookFormSchema = z.object({
     .min(0, "Cannot have negative copies") // Allows 0
     .max(100, "Maximum 100 copies allowed"), // Optional upper limit
     description: z.string().optional() ,// Add if needed
-    available: z.boolean().optional().default(true)
+    available: z.boolean().optional()
 });
 
 // Infer TypeScript type from Zod schema
