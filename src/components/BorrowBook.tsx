@@ -22,6 +22,7 @@ import { useState } from "react";
 import type { IBook } from "@/types";
 import { toast } from "sonner";
 import { useAddBorrowMutation } from "@/services/books";
+import { useNavigate } from "react-router";
 
 
 interface BookProp {
@@ -32,7 +33,7 @@ interface BookProp {
 
 export function BorrowBook({ book }: BookProp) {
     const [open, setOpen] = useState(false);
-
+const nagivate=useNavigate();
     // Define validation schema
     const borrowSchema = z.object({
         bookId: z.string().min(1, "Book ID is required"),
@@ -66,6 +67,7 @@ export function BorrowBook({ book }: BookProp) {
 
 
              toast.success(result.message || "Book borrowed successfully!");
+            nagivate('/borrowSummary')
             setOpen(false);
             form.reset();
         } catch (error:any) {

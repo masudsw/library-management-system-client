@@ -15,3 +15,12 @@ export interface IBorrow {
     quantity: string;
     dueDate: Date;
 }
+
+export interface IBookSummary {
+  totalQuantity: number;
+  book: {
+    title: string;
+    isbn: string;
+  };
+}
+

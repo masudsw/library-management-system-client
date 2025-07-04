@@ -26,9 +26,9 @@ const Navbar = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link to="/borrow">
+          <Link to="/borrowSummary">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Borrow
+              Borrow Summary
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
