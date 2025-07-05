@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -81,121 +80,127 @@ export function BookForm() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {/* Title Field */}
-                <FormField
-                    control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Title</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Book title" {...field} />
-                            </FormControl>
-                            <FormDescription>The complete title of the book.</FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* Author Field */}
-                <FormField
-                    control={form.control}
-                    name="author"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Author</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Author name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* Genre Field */}
-                <FormField
-                    control={form.control}
-                    name="genre"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Genre</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Title Field */}
+                    <FormField
+                        control={form.control}
+                        name="title"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Title</FormLabel>
                                 <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a genre" />
-                                    </SelectTrigger>
+                                    <Input placeholder="Book title" {...field} />
                                 </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="FICTION">FICTION</SelectItem>
-                                    <SelectItem value="NON_FICTION">NON_FICTION</SelectItem>
-                                    <SelectItem value="SCIENCE">SCIENCE</SelectItem>
-                                    <SelectItem value="HISTORY">HISTORY</SelectItem>
-                                    <SelectItem value="BIOGRAPHY">BIOGRAPHY</SelectItem>
-                                    <SelectItem value="FANTASY">FANTASY</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                {/* ISBN Field */}
-                <FormField
-                    control={form.control}
-                    name="isbn"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>ISBN</FormLabel>
-                            <FormControl>
-                                <Input placeholder="10-13 digit ISBN" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                    {/* Author Field */}
+                    <FormField
+                        control={form.control}
+                        name="author"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Author</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Author name" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                {/* Copies Field */}
-                <FormField
-                    control={form.control}
-                    name="copies"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Copies Available</FormLabel>
-                            <FormControl>
-                                <Input
-                                    type="number"
-                                    min="1"
-                                    {...field}
-                                    onChange={(e) => field.onChange(parseInt(e.target.value))}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                    {/* Genre Field */}
+                    <FormField
+                        control={form.control}
+                        name="genre"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Genre</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a genre" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="FICTION">FICTION</SelectItem>
+                                        <SelectItem value="NON_FICTION">NON_FICTION</SelectItem>
+                                        <SelectItem value="SCIENCE">SCIENCE</SelectItem>
+                                        <SelectItem value="HISTORY">HISTORY</SelectItem>
+                                        <SelectItem value="BIOGRAPHY">BIOGRAPHY</SelectItem>
+                                        <SelectItem value="FANTASY">FANTASY</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                {/* Description Field */}
-                <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    placeholder="Brief description of the book"
-                                    className="resize-none"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                    {/* ISBN Field */}
+                    <FormField
+                        control={form.control}
+                        name="isbn"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>ISBN</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="10-13 digit ISBN" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
+                    {/* Copies Field */}
+                    <FormField
+                        control={form.control}
+                        name="copies"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Copies Available</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        type="number"
+                                        min="1"
+                                        {...field}
+                                        onChange={(e) => field.onChange(parseInt(e.target.value))}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                <Button type="submit" disabled={isLoading}>{isLoading ? "adding..." : "Add Book"}</Button>
+                    {/* Description Field - full width on all screens */}
+                    <div className="lg:col-span-2">
+                        <FormField
+                            control={form.control}
+                            name="description"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Description</FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder="Brief description of the book"
+                                            className="resize-none"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                </div>
+
+                <Button type="submit" disabled={isLoading}>
+                    {isLoading ? "Adding..." : "Add Book"}
+                </Button>
             </form>
+
         </Form>
     );
 }

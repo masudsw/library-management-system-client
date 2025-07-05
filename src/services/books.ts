@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const booksApi = createApi({
     reducerPath: "booksApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://library-management-system-eta-two.vercel.app/api' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://library-management-api-swart.vercel.app/api' }),
     tagTypes: ["All-books", "Borrow-books"],
     endpoints: (builder) => ({
         getAllBooks: builder.query({
@@ -36,7 +36,7 @@ export const booksApi = createApi({
                 method: "PUT",
                 body: updatedBookInfo,
             }),
-            invalidatesTags: ["All-books"]
+            invalidatesTags: ["All-books","Borrow-books"]
         }),
         addBorrow: builder.mutation({
             query: (borrowData) => ({

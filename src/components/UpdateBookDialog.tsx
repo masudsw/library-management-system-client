@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 
 import { useBookForm } from "./useBookForm";
-import { bookFormSchema, type BookFormValues } from "@/schema/shema";
+import { bookFormSchema } from "@/schema/shema";
 import type { z } from "zod";
 import { toast } from "sonner";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
@@ -34,7 +34,7 @@ export function UpdateBookDialog({ book }: BookProp) {
       return;
     }
       try {
-    const result = await updateBook({
+    await updateBook({
       id: book._id,
       updatedBookInfo: values,
     }).unwrap();

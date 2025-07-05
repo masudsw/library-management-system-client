@@ -3,7 +3,7 @@ import { BookForm } from "@/components/BookForm";
 
 const AddBook = () => {
     return (
-        <div className="w-80">
+        <div className="my-10">
             <BookForm/>
         </div>
     );

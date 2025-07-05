@@ -1,40 +1,49 @@
-import { Link } from "react-router"; // Changed from "react-router"
+
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
+import { Link } from "react-router";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link to="/books">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Books
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="/addbook">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <button className="border-t-neutral-950"><span className="text-white bg-amber-900">Add new Book</span></button>
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="/borrowSummary">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Borrow Summary
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-  );
-};
+    <header className="bg-gray-100 dark:bg-gray-900 border-b px-4 py-3 shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo or App Name */}
+        <div className="text-lg font-semibold text-gray-800 dark:text-white">
+          <Link to="/">📚 LibraryManagemet</Link>
+        </div>
 
-export default Navbar;
+        {/* Navigation Menu */}
+        <NavigationMenu>
+          <NavigationMenuList className="flex gap-4">
+            <NavigationMenuItem>
+              <Link to="/books">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  All Books
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to="/addbook">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Add Book
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to="/borrowSummary">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Borrow Summary
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </header>
+  );
+}
