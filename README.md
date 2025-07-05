@@ -15,7 +15,7 @@ A modern React frontend for the [Library Management Backend API](https://library
 - **Optimistic UI updates** ⚡
 - **Pagination** support 🔢
 
-![App Screenshot](./assets/app_screen_shot.png) *(Preview image path)*
+![App Screenshot](app_screen_shot.png) *(Preview image path)*
 
 ## 🚀 Quick Start
 
